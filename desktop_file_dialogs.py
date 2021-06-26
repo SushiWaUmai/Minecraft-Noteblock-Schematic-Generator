@@ -1,3 +1,5 @@
+# Thanks to https://gist.github.com/Enteleform/c9049a589ef7c490c2c2a8e1e02860e5#file-desktop_file_dialogs-py
+
 import os
 from typing    import List, Callable
 from abc       import ABCMeta, abstractproperty
