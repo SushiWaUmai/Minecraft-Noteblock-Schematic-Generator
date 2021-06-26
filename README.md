@@ -1,6 +1,6 @@
 # Minecraft Schematic Generator
 
-Convert midi files to Schematic Files
+Create Minecraft Noteblock Schematics easily by converting midi files to Schematic Files
 
 
 
