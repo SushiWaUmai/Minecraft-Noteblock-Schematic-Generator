@@ -1,0 +1,132 @@
+#:kivy 1.1.0
+
+Root:
+    canvas.before:
+        Color:
+            rgba: 44 / 255, 62 / 255, 80 / 255, 1
+        Rectangle:
+            pos: root.pos
+            size: root.size
+
+    BoxLayout:
+        orientation: 'vertical'
+        padding: 30
+        spacing: 20
+
+        Label:
+            canvas.before:
+                Color:
+                    rgba: 52 / 255, 73 / 255, 94 / 255, 1
+                RoundedRectangle:
+                    pos: self.pos
+                    size: self.size
+                    radius: [5]
+
+            text: 'MIDI to Minecraft Litematic converter'
+            size_hint: 1, None
+            height: 30
+
+        BoxLayout:
+            spacing: 20
+
+            BoxLayout:
+                orientation: 'vertical'
+                spacing: 5
+
+                Label:
+                    color: 1, 1, 1, 1
+                    text: 'Selected MIDI file:'
+                    size_hint_y: None
+                    height: 30
+
+                OneLineTextInput:
+                    id: midi_file_label
+                    text: ''
+
+                RoundedButton:  
+                    text: 'Load MIDI'
+                    on_release: root.select_midi_file()
+
+            BoxLayout:
+                orientation: 'vertical'
+                spacing: 5
+
+                Label:
+                    color: 1, 1, 1, 1
+                    text: 'Selected Output Directory:'
+                    size_hint_y: None
+                    height: 30
+
+                OneLineTextInput:
+                    id: output_directory_label
+                    text: root.selected_output_dir
+
+                RoundedButton:
+                    text: 'Select Output Path'
+                    on_release: root.select_save_path()
+
+        BoxLayout:
+            Label:
+                text: 'Output File Name'
+                color: 1, 1, 1, 1
+                size_hint: 0.5, None
+                height: 30
+
+            OneLineTextInput:
+                id: output_filename_label
+                text: ''
+
+        AnchorLayout:
+            anchor_x: 'right'
+            anchor_y: 'bottom'
+
+            RoundedButton:
+                size_hint: 0.5, 0.3
+                text: 'Create Schematic'
+                on_release: root.submit()
+
+<ResultPopup>:
+    BoxLayout:
+        orientation: 'vertical'
+        padding: 30
+        spacing: 20
+        pos_hint: { 'center_x': 0.5, 'center_y': 0.5 }
+
+        TextInput:
+            pos_hint: { 'center_x': 0.5, 'center_y': 0.5 }
+            size_hint: 0.9, 0.9
+            is_focusable: False
+            readonly: True
+            text: root.result
+        
+        AnchorLayout:
+            size_hint: 1, 0.3
+
+            anchor_x: 'right'
+            anchor_y: 'bottom'
+
+            RoundedButton:
+                size_hint: 0.5, 0.3
+                text: 'Ok'
+                on_release: root.exit()
+
+
+
+<OneLineTextInput@TextInput>
+    size_hint_y: None
+    height: 30
+    multiline: False
+
+<RoundedButton@Button>
+    background_color: 0, 0, 0, 0
+    background_normal: ''
+    size_hint_min_y: 30
+    size_hint_max_y: 50
+
+    canvas.before:
+        Color:
+            rgba: 39 / 255, 174 / 255, 96 / 255, 1
+        RoundedRectangle:
+            size: self.size
+            pos: self.pos
+            radius: [20]
