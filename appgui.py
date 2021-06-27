@@ -24,6 +24,7 @@ class Root(FloatLayout):
         self.selected_input_path = ''
         self.output_filename = ''
         self.selected_output_dir = os.path.join(os.environ.get('appdata'), '.minecraft', 'schematics')
+        self.schematic_author = 'Minecraft Noteblock Schematic Generator'
 
 
     def dismiss_popup(self):
@@ -70,7 +71,8 @@ class Root(FloatLayout):
         self.selected_input_path = self.ids.midi_file_label.text
         self.selected_output_dir = self.ids.output_directory_label.text
         self.output_filename = self.ids.output_filename_label.text
-        
+        self.schematic_author = self.ids.schematic_author_label.text
+
         if self.selected_input_path == '':
             self.show_result('Input MIDI file missing')
             return
@@ -90,7 +92,7 @@ class Root(FloatLayout):
         self.output_filename = sanitize_filename(self.output_filename)
 
         out_filepath = os.path.join(self.selected_output_dir, self.output_filename)
-        generate_schematic(self.selected_input_path, out_filepath)
+        generate_schematic(self.selected_input_path, save_path=out_filepath, author=self.schematic_author)
 
         self.show_result(f'File {out_filepath} was successfully created!')
 
@@ -108,7 +110,7 @@ class Editor(App):
     def build(self):
         self.title = 'Minecraft Noteblock Schematic Generator'
         Window.minimum_width = 500
-        Window.minimum_height = 450
+        Window.minimum_height = 500
 
 Factory.register('Root', cls=Root)
 Factory.register('Result', cls=ResultPopup)

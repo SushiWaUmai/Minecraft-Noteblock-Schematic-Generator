@@ -66,17 +66,36 @@ Root:
                     on_release: root.select_save_path()
 
         BoxLayout:
-            Label:
-                text: 'Output File Name'
-                color: 1, 1, 1, 1
-                size_hint: 0.5, None
-                height: 30
+            orientation: 'vertical'
+            spacing: 30
 
-            OneLineTextInput:
-                id: output_filename_label
-                text: ''
+            BoxLayout:
+                Label:
+                    text: 'Output File Name'
+                    color: 1, 1, 1, 1
+                    size_hint: 0.5, None
+                    height: 30
+                    pos_hint: { 'center_x' : 0.5, 'center_y' : 0.5 }
+
+                OneLineTextInput:
+                    id: output_filename_label
+                    text: ''
+
+            BoxLayout:
+                Label:
+                    text: 'Schematic Author'
+                    color: 1, 1, 1, 1
+                    size_hint: 0.5, None
+                    height: 30
+                    pos_hint: { 'center_x' : 0.5, 'center_y' : 0.5 }
+
+                OneLineTextInput:
+                    id: schematic_author_label
+                    text: root.schematic_author
+
 
         AnchorLayout:
+            size_hint_y: 0.5
             anchor_x: 'right'
             anchor_y: 'bottom'
 
@@ -116,6 +135,7 @@ Root:
     size_hint_y: None
     height: 30
     multiline: False
+    pos_hint: { 'center_x' : 0.5, 'center_y' : 0.5 }
 
 <RoundedButton@Button>
     background_color: 0, 0, 0, 0

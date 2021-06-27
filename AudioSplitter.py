@@ -3,11 +3,10 @@ import copy
 import sys
 
 pitch_cutoff_list = [6, 30, 54, 78, 102, 126]
+# pitch_cutoff_list = [for i in range(12) i * 12 + 6]
 
 def split_midi(path):
 	mid = pretty_midi.PrettyMIDI(path)
-	low_notes = copy.deepcopy(mid)
-	high_notes = copy.deepcopy(mid)
 	result = copy.deepcopy(mid)
 	result.instruments = []
 
@@ -25,3 +24,6 @@ def split_midi(path):
 		result.instruments.append(pitch_instrument)
 
 	return result
+
+if __name__ == '__main__':
+	split_midi(sys.argv[1])
