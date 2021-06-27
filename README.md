@@ -1,4 +1,4 @@
-# Minecraft Schematic Generator
+# Minecraft Noteblock Schematic Generator
 
 Create Minecraft Noteblock Schematics easily by converting midi files to Schematic Files
 

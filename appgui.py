@@ -106,7 +106,7 @@ class Editor(App):
     icon = 'ico/icon.png'
     
     def build(self):
-        self.title = 'Minecraft Schematic Generator'
+        self.title = 'Minecraft Noteblock Schematic Generator'
         Window.minimum_width = 500
         Window.minimum_height = 450
 
