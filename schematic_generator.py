@@ -143,17 +143,19 @@ def time_to_coord(time):
 
 def create_note_block(reg, width, note, instrument_block, start):
 	# print(note.velocity)
-	vel_pos = 7 - round((note.velocity * 7) / 128)
+	vel_pos = width - round((note.velocity * width) / 128)
 	coord = time_to_coord(note.start) + start + 5
 	props = { 'note' : str(note.pitch - 54) }
 	note_block = BlockState('minecraft:note_block', props)
 
-	if vel_pos > 7 / 2:
+	if vel_pos > width / 2:
 		vel_add = -1
 	else:
 		vel_add = 1
 
 	while True:
+		if vel_pos <= 0 or vel_pos > width:
+			break
 		if reg.getblock(width + vel_pos, 7, coord) == air:
 			reg.setblock(width + vel_pos, 7, coord, note_block)
 			reg.setblock(width + vel_pos, 6, coord, instrument_block)
@@ -174,7 +176,7 @@ def create_note_blocks(reg, width, audio_file, start=0):
 def generate_schematic(file_path, save_path=None, width=7, start=5, author='Minecraft-Noteblock-Schematic-Generator', description=''):
 	audio_file = split_midi(file_path)
 
-	reg = Region(0, 0, 0, width*2+1, 8, time_to_coord(audio_file.get_end_time()))
+	reg = Region(0, 0, 0, width*2+1, 8, time_to_coord(audio_file.get_end_time() + 1))
 	
 	create_layers(reg, width, start)
 	create_start(reg, width, start)
